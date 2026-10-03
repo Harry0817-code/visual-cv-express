@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "deploy": "gh-pages -d .output/public"
+    "deploy": "Copy-Item .output/public/_shell.html .output/public/index.html -Force; gh-pages -d .output/public"
   },
   "overrides": {
     "rolldown": "1.2.1"
