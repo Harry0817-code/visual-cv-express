@@ -42,7 +42,7 @@ const NAV_LINKS = [
 
 const CONTACT = {
   email: "ramaniyadwitiya@gmail.com",
-  phone: "+62 818 0932 105",
+  phone: "+62 818 0932 1005",
   linkedin: "https://linkedin.com/in/Dwitiya-ramaniya",
   location: "Tangerang Selatan, Banten",
 };
