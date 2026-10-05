@@ -441,7 +441,9 @@ function Index() {
               {CONTACT.email}
             </a>
             <a
-              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
+              // href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
+              href="https://wa.me/+628180932105"
+              target="_blank"
               className="transition-colors hover:text-ink"
             >
               {CONTACT.phone}
