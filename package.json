@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "vite build --base=/visual-cv-express/",
+    "build:dev": "vite build --mode development --base=/visual-cv-express/",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "deploy": "node -e \"require('fs').copyFileSync('.output/public/_shell.html', '.output/public/index.html')\" && gh-pages -d .output/public"
+    "deploy": "npm run build && gh-pages -d .output/public"
   },
   "overrides": {
     "rolldown": "1.2.1"
