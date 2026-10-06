@@ -1,8 +1,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { nitro } from "nitro/vite";
 
 export default defineConfig({
   vite: {
-    base: "/visual-cv-express/",
+    plugins: [nitro()],
   },
 
   tanstackStart: {
