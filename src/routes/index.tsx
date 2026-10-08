@@ -263,29 +263,33 @@ function Index() {
             </Button>
           </div>
           <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {GALLERY_CATEGORIES.map((category) => (
-              <Link key={category.label} to="/karya" className="group block min-w-0">
-                <figure>
-                  <div className="overflow-hidden rounded-lg">
-                    <img
-                      src={category.images[0].src}
-                      alt={category.images[0].alt}
-                      width={category.images[0].width}
-                      height={category.images[0].height}
-                      loading="lazy"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
-                    />
-                  </div>
-                  <figcaption className="mt-3 flex items-center justify-between gap-2 text-sm font-medium text-ink">
-                    {category.label}
-                    <ArrowUpRight
-                      className="size-4 shrink-0 text-ink/40 transition-colors group-hover:text-accent"
-                      aria-hidden="true"
-                    />
-                  </figcaption>
-                </figure>
-              </Link>
-            ))}
+            {GALLERY_CATEGORIES.map((category) => {
+              const preview = category.images[0];
+              if (!preview) return null;
+              return (
+                <Link key={category.label} to="/karya" className="group block min-w-0">
+                  <figure>
+                    <div className="overflow-hidden rounded-lg">
+                      <img
+                        src={preview.src}
+                        alt={preview.alt}
+                        width={preview.width}
+                        height={preview.height}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
+                      />
+                    </div>
+                    <figcaption className="mt-3 flex items-center justify-between gap-2 text-sm font-medium text-ink">
+                      {category.label}
+                      <ArrowUpRight
+                        className="size-4 shrink-0 text-ink/40 transition-colors group-hover:text-accent"
+                        aria-hidden="true"
+                      />
+                    </figcaption>
+                  </figure>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
