@@ -1,6 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { GALLERY_CATEGORIES, PORTFOLIO_DRIVE_URL } from "@/lib/portfolio";
+import { PORTFOLIO_DRIVE_URL, WORK_CATEGORIES } from "@/lib/portfolio";
+
+const CATEGORIES_PER_PAGE = 3;
 
 export function DriveLink() {
   return (
@@ -18,18 +21,33 @@ export function DriveLink() {
 }
 
 export function PortfolioGallery() {
-  const count = GALLERY_CATEGORIES.reduce((total, category) => total + category.images.length, 0);
+  const totalPages = Math.ceil(WORK_CATEGORIES.length / CATEGORIES_PER_PAGE);
+  const [page, setPage] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const start = page * CATEGORIES_PER_PAGE;
+  const visibleCategories = WORK_CATEGORIES.slice(start, start + CATEGORIES_PER_PAGE);
+  const totalWorks = WORK_CATEGORIES.reduce((total, category) => total + category.images.length, 0);
+
+  const goToPage = (nextPage: number) => {
+    setPage(nextPage);
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <section id="karya" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-20">
+    <section id="karya" ref={sectionRef} className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-20">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-        <p className="text-sm text-ink/50">{GALLERY_CATEGORIES.length} kategori · {count} karya</p>
+        <p className="text-sm text-ink/50">
+          {WORK_CATEGORIES.length} kategori · {totalWorks} karya
+        </p>
         <DriveLink />
       </div>
+
       <div className="space-y-14">
-        {GALLERY_CATEGORIES.map((category, index) => (
+        {visibleCategories.map((category, index) => (
           <div key={category.label}>
             <div className="mb-5 flex items-baseline gap-4 border-t border-ink/10 pt-6">
-              <span className="text-xs tabular-nums text-ink/40">{String(index + 1).padStart(2, "0")}</span>
+              <span className="text-xs tabular-nums text-ink/40">{String(start + index + 1).padStart(2, "0")}</span>
               <h2 className="min-w-0 font-display text-2xl font-medium text-ink">{category.label}</h2>
             </div>
             <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-3">
@@ -46,7 +64,40 @@ export function PortfolioGallery() {
           </div>
         ))}
       </div>
-      <div className="mt-12 flex justify-center border-t border-ink/10 pt-10"><DriveLink /></div>
+
+      <nav aria-label="Navigasi halaman galeri" className="mt-12 flex flex-wrap items-center justify-center gap-2 border-t border-ink/10 pt-10">
+        <Button
+          variant="outline"
+          className="h-10 gap-1 px-4"
+          disabled={page === 0}
+          onClick={() => goToPage(page - 1)}
+        >
+          <ChevronLeft aria-hidden="true" />
+          Sebelumnya
+        </Button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Button
+            key={index}
+            variant={index === page ? "default" : "outline"}
+            className="h-10 w-10 px-0 tabular-nums"
+            aria-current={index === page ? "page" : undefined}
+            onClick={() => goToPage(index)}
+          >
+            {index + 1}
+          </Button>
+        ))}
+        <Button
+          variant="outline"
+          className="h-10 gap-1 px-4"
+          disabled={page === totalPages - 1}
+          onClick={() => goToPage(page + 1)}
+        >
+          Berikutnya
+          <ChevronRight aria-hidden="true" />
+        </Button>
+      </nav>
+
+      <div className="mt-10 flex justify-center"><DriveLink /></div>
     </section>
   );
 }
