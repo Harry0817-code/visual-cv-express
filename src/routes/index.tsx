@@ -183,7 +183,7 @@ function Index() {
       <section className="mx-auto max-w-6xl px-6 pb-20">
         <div className="rise d4 rounded-[min(2vw,20px)] border border-ink/5 bg-white/40 p-8 backdrop-blur-xl sm:p-12">
           <div className="grid gap-10 sm:grid-cols-12">
-            <div className="sm:col-span-4">
+            <div className="sm:col-span-3">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
                 Tentang
               </p>
@@ -194,11 +194,11 @@ function Index() {
                 height={2400}
                 className="mt-6 aspect-[3/4] w-52 max-w-full rounded-lg object-cover"
               />
-              <p className="mt-4 font-display text-2xl font-light leading-snug text-ink/90">
+              {/* <p className="mt-4 font-display text-2xl font-light leading-snug text-ink/90">
                 Lebih dari lima tahun mengolah visual yang rapi dan profesional.
-              </p>
+              </p> */}
             </div>
-            <div className="sm:col-span-8">
+            <div className="sm:col-span-9 flex flex-col justify-center">
               <p className="text-base leading-relaxed text-pretty text-ink/70">
                 Terampil menggunakan Adobe Creative Suite dan Canva — mulai
                 dari retouching, compositing, masking, blending, color
