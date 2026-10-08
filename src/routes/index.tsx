@@ -246,18 +246,10 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-light text-balance sm:text-5xl">
                 Galeri Desain
               </h2>
-              <p className="mt-3 text-sm text-ink/50">
-                {GALLERY_CATEGORIES.length} kategori ·{" "}
-                {GALLERY_CATEGORIES.reduce(
-                  (total, category) => total + category.images.length,
-                  0
-                )}{" "}
-                karya
-              </p>
             </div>
             <Button asChild className="h-11 gap-3 px-5">
               <Link to="/karya">
-                Buka Galeri
+                Buka Semua Galeri
                 <ArrowUpRight aria-hidden="true" />
               </Link>
             </Button>
