@@ -1,0 +1,4 @@
+- [x] Tambahkan foto diri dari tautan Google Drive.
+- [x] Ganti galeri dummy dengan tiga karya asli per kategori.
+- [x] Tambahkan tombol Google Drive dan periksa foto serta tautannya.
+- [x] Perbaiki kesalahan halaman yang terdeteksi dan verifikasi hasil.
