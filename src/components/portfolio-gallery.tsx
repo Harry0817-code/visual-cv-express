@@ -54,9 +54,9 @@ export function PortfolioGallery() {
               {category.images.map((image) => (
                 <figure key={image.src} className="min-w-0">
                   <Button asChild variant="ghost" className="group block h-auto w-full overflow-hidden rounded-lg p-0">
-                    <a href={image.src} target="_blank" rel="noopener noreferrer" aria-label={`Lihat ${image.alt}`}>
+                    <div aria-label={`Lihat ${image.alt}`}>
                       <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" className="h-auto w-full transition-transform duration-500 motion-safe:group-hover:scale-[1.02]" />
-                    </a>
+                    </div>
                   </Button>
                 </figure>
               ))}

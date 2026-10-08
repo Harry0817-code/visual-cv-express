@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
-import profilePhoto from "@/assets/portfolio/profile.jpg.asset.json";
+import profilePhoto from "@/assets/portfolio/dwitiya-ramaniya.jpg";
 import { Button } from "@/components/ui/button";
 import { GALLERY_CATEGORIES } from "@/lib/portfolio";
 
@@ -188,7 +188,7 @@ function Index() {
                 Tentang
               </p>
               <img
-                src={profilePhoto.url}
+                src={profilePhoto}
                 alt="Foto diri Dwitiya Ramaniya"
                 width={1792}
                 height={2400}
