@@ -1,10 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import workRetouch from "@/assets/work-retouch.jpg";
-import workCompositing from "@/assets/work-compositing.jpg";
-import workPackaging from "@/assets/work-packaging.jpg";
-import workBranding from "@/assets/work-branding.jpg";
-import workPoster from "@/assets/work-poster.jpg";
+import profilePhoto from "@/assets/portfolio/profile.jpg.asset.json";
+import { PortfolioGallery } from "@/components/portfolio-gallery";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,54 +43,6 @@ const CONTACT = {
   linkedin: "https://linkedin.com/in/Dwitiya-ramaniya",
   location: "Tangerang Selatan, Banten",
 };
-
-const WORKS = [
-  {
-    src: workRetouch,
-    alt: "Contoh hasil retouching foto produk serum skincare",
-    label: "Retouching Produk",
-    span: "",
-    width: 1024,
-    height: 1280,
-    ratio: "aspect-[4/5]",
-  },
-  {
-    src: workCompositing,
-    alt: "Contoh komposit foto produk sepatu untuk e-commerce",
-    label: "Komposit & E-Commerce",
-    span: "sm:col-span-2",
-    width: 1920,
-    height: 1024,
-    ratio: "aspect-[16/9]",
-  },
-  {
-    src: workPackaging,
-    alt: "Desain kemasan brand kopi minimalis",
-    label: "Desain Kemasan",
-    span: "",
-    width: 1024,
-    height: 1024,
-    ratio: "aspect-square",
-  },
-  {
-    src: workBranding,
-    alt: "Sistem identitas brand: kartu nama dan kop surat",
-    label: "Identitas Brand",
-    span: "",
-    width: 1024,
-    height: 1024,
-    ratio: "aspect-square",
-  },
-  {
-    src: workPoster,
-    alt: "Seri poster tipografi editorial",
-    label: "Poster & Editorial",
-    span: "sm:col-span-2",
-    width: 1920,
-    height: 1024,
-    ratio: "aspect-[16/9]",
-  },
-];
 
 const EXPERIENCE = [
   {
@@ -234,6 +183,13 @@ function Index() {
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
                 Tentang
               </p>
+              <img
+                src={profilePhoto.url}
+                alt="Foto diri Dwitiya Ramaniya"
+                width={1792}
+                height={2400}
+                className="mt-6 aspect-[3/4] w-52 max-w-full rounded-lg object-cover"
+              />
               <p className="mt-4 font-display text-2xl font-light leading-snug text-ink/90">
                 Lebih dari lima tahun mengolah visual yang rapi dan profesional.
               </p>
@@ -275,40 +231,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section id="karya" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="mb-12 flex items-end justify-between">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
-              Karya Terpilih
-            </p>
-            <h2 className="mt-3 font-display text-4xl font-light tracking-tight text-balance sm:text-5xl">
-              Galeri Desain
-            </h2>
-          </div>
-          <span className="hidden text-sm text-ink/40 sm:block">05 karya</span>
-        </div>
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
-          {WORKS.map((work) => (
-            <figure
-              key={work.label}
-              className={`group relative overflow-hidden rounded-[min(1vw,12px)] ${work.span}`}
-            >
-              <img
-                src={work.src}
-                alt={work.alt}
-                width={work.width}
-                height={work.height}
-                loading="lazy"
-                className={`${work.ratio} w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
-              />
-              <span className="absolute bottom-3 left-3 rounded-full bg-paper/70 px-3 py-1 text-xs font-medium text-ink/70 backdrop-blur-md">
-                {work.label}
-              </span>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <PortfolioGallery />
 
       {/* Experience */}
       <section id="pengalaman" className="mx-auto max-w-6xl px-6 py-20">
