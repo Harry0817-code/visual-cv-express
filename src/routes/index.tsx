@@ -1,7 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 
 import profilePhoto from "@/assets/portfolio/profile.jpg.asset.json";
-import { PortfolioGallery } from "@/components/portfolio-gallery";
+import { Button } from "@/components/ui/button";
+import { GALLERY_CATEGORIES } from "@/lib/portfolio";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,7 +33,6 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV_LINKS = [
-  { href: "#karya", label: "Karya" },
   { href: "#pengalaman", label: "Pengalaman" },
   { href: "#keahlian", label: "Keahlian" },
   { href: "#kontak", label: "Kontak" },
@@ -121,6 +122,9 @@ function Index() {
             Dwitiya Ramaniya
           </a>
           <nav className="hidden items-center gap-8 text-sm text-ink/60 sm:flex">
+            <Link to="/karya" className="transition-colors hover:text-ink">
+              Karya
+            </Link>
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -231,7 +235,64 @@ function Index() {
         </div>
       </section>
 
-      <PortfolioGallery />
+      {/* Gallery teaser */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="rounded-[min(2vw,20px)] border border-ink/5 bg-white/40 p-8 backdrop-blur-xl sm:p-12">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
+                Karya Terpilih
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-light text-balance sm:text-5xl">
+                Galeri Desain
+              </h2>
+              <p className="mt-3 text-sm text-ink/50">
+                {GALLERY_CATEGORIES.length} kategori ·{" "}
+                {GALLERY_CATEGORIES.reduce(
+                  (total, category) => total + category.images.length,
+                  0
+                )}{" "}
+                karya
+              </p>
+            </div>
+            <Button asChild className="h-11 gap-3 px-5">
+              <Link to="/karya">
+                Buka Galeri
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {GALLERY_CATEGORIES.map((category) => {
+              const preview = category.images[0];
+              if (!preview) return null;
+              return (
+                <Link key={category.label} to="/karya" className="group block min-w-0">
+                  <figure>
+                    <div className="overflow-hidden rounded-lg">
+                      <img
+                        src={preview.src}
+                        alt={preview.alt}
+                        width={preview.width}
+                        height={preview.height}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
+                      />
+                    </div>
+                    <figcaption className="mt-3 flex items-center justify-between gap-2 text-sm font-medium text-ink">
+                      {category.label}
+                      <ArrowUpRight
+                        className="size-4 shrink-0 text-ink/40 transition-colors group-hover:text-accent"
+                        aria-hidden="true"
+                      />
+                    </figcaption>
+                  </figure>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Experience */}
       <section id="pengalaman" className="mx-auto max-w-6xl px-6 py-20">

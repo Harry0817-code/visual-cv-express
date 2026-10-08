@@ -69,3 +69,7 @@ export const WORK_CATEGORIES = [
     { src: work12_0.url, alt: "Product Photography \u2014 karya 1 Dwitiya Ramaniya", width: 2133, height: 1600 }
   ] }
 ];
+
+export const GALLERY_CATEGORIES = WORK_CATEGORIES.filter(
+  (category) => category.images.length === 3
+);
